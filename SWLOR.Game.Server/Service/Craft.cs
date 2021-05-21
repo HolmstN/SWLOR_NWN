@@ -30,6 +30,7 @@ namespace SWLOR.Game.Server.Service
         private static readonly Dictionary<RecipeCategoryType, RecipeCategoryAttribute> _activeCategories = new Dictionary<RecipeCategoryType, RecipeCategoryAttribute>();
         private static readonly Dictionary<SkillType, Dictionary<RecipeCategoryType, Dictionary<RecipeType, RecipeDetail>>> _recipesBySkillAndCategory = new Dictionary<SkillType, Dictionary<RecipeCategoryType, Dictionary<RecipeType, RecipeDetail>>>();
         private static readonly Dictionary<SkillType, Dictionary<RecipeCategoryType, RecipeCategoryAttribute>> _categoriesBySkill = new Dictionary<SkillType, Dictionary<RecipeCategoryType, RecipeCategoryAttribute>>();
+        private static readonly Dictionary<string, ItemModDetail> _itemMods = new Dictionary<string, ItemModDetail>();
 
         private static readonly Dictionary<SkillType, Tuple<AbilityType, AbilityType>> _craftSkillToAbility = new Dictionary<SkillType, Tuple<AbilityType, AbilityType>>();
 
@@ -44,8 +45,7 @@ namespace SWLOR.Game.Server.Service
             CacheCategories();
             CacheRecipes();
             CacheCraftSkillToAbilities();
-
-            Console.WriteLine($"Loaded {_recipes.Count} recipes.");
+            CacheItemMods();
         }
 
         /// <summary>
@@ -105,6 +105,8 @@ namespace SWLOR.Game.Server.Service
                     }
                 }
             }
+
+            Console.WriteLine($"Loaded {_recipes.Count} recipes.");
         }
 
         /// <summary>
@@ -116,6 +118,29 @@ namespace SWLOR.Game.Server.Service
             _craftSkillToAbility[SkillType.Fabrication] = new Tuple<AbilityType, AbilityType>(AbilityType.Intelligence, AbilityType.Constitution);
             _craftSkillToAbility[SkillType.FirstAid] = new Tuple<AbilityType, AbilityType>(AbilityType.Intelligence, AbilityType.Wisdom);
             _craftSkillToAbility[SkillType.Cybertech] = new Tuple<AbilityType, AbilityType>(AbilityType.Dexterity, AbilityType.Wisdom);
+        }
+
+        /// <summary>
+        /// When the module loads, all item mods are loaded into the cache.
+        /// </summary>
+        private static void CacheItemMods()
+        {
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(w => typeof(IItemModListDefinition).IsAssignableFrom(w) && !w.IsInterface && !w.IsAbstract);
+
+            foreach (var type in types)
+            {
+                var instance = (IItemModListDefinition)Activator.CreateInstance(type);
+                var itemMods = instance.BuildItemMods();
+
+                foreach (var (itemTag, itemMod) in itemMods)
+                {
+                    _itemMods[itemTag] = itemMod;
+                }
+            }
+
+            Console.WriteLine($"Loaded {_itemMods.Count} item mods.");
         }
 
         /// <summary>
@@ -333,7 +358,7 @@ namespace SWLOR.Game.Server.Service
             var device = OBJECT_SELF;
             var state = GetPlayerCraftingState(player);
 
-            if (state.IsAutoCrafting)
+            if (state.IsCrafting)
             {
                 SendMessageToPC(player, ColorToken.Red("You are crafting."));
                 return;
@@ -370,16 +395,16 @@ namespace SWLOR.Game.Server.Service
             var state = GetPlayerCraftingState(player);
             var device = OBJECT_SELF;
 
-            float CalculateAutoCraftingDelay()
+            float CalculateCraftingDelay()
             {
                 return 20f;
             }
 
-            void CraftItem(bool isSuccessful)
+            void DoCraftItem(bool isSuccessful)
             {
                 var recipe = GetRecipe(state.SelectedRecipe);
 
-                var playerComponents = GetComponents(player, device);
+                var (playerComponents, itemMod) = GetComponents(player, device);
                 var remainingComponents = recipe.Components.ToDictionary(x => x.Key, y => y.Value);
 
                 for (var index = playerComponents.Count - 1; index >= 0; index--)
@@ -412,9 +437,21 @@ namespace SWLOR.Game.Server.Service
 
                 if (isSuccessful)
                 {
-                    CreateItemOnObject(recipe.Resref, player, recipe.Quantity);
+                    var finishedItem = CreateItemOnObject(recipe.Resref, player, recipe.Quantity);
+
+                    if (GetIsObjectValid(itemMod))
+                    {
+                        var itemModTag = GetTag(itemMod);
+                        var itemModDetail = _itemMods[itemModTag];
+
+                        itemModDetail.ApplyItemModAction?.Invoke(player, itemMod, finishedItem);
+                    }
+
                     ExecuteScript("craft_success", player);
                 }
+
+                if(GetIsObjectValid(itemMod))
+                    DestroyObject(itemMod);
             }
 
             if (!HasAllComponents(player, device))
@@ -423,9 +460,9 @@ namespace SWLOR.Game.Server.Service
                 return;
             }
 
-            var craftingDelay = CalculateAutoCraftingDelay();
+            var craftingDelay = CalculateCraftingDelay();
 
-            state.IsAutoCrafting = true;
+            state.IsCrafting = true;
             Core.NWNX.Player.StartGuiTimingBar(player, craftingDelay);
             AssignCommand(player, () => ActionPlayAnimation(Animation.LoopingGetMid, 1f, craftingDelay));
             DelayCommand(craftingDelay, () =>
@@ -442,15 +479,15 @@ namespace SWLOR.Game.Server.Service
 
                 if (roll <= chanceToCraft)
                 {
-                    CraftItem(true);
+                    DoCraftItem(true);
                 }
                 else
                 {
-                    CraftItem(false);
+                    DoCraftItem(false);
                     SendMessageToPC(player, ColorToken.Red("You failed to craft the item..."));
                 }
 
-                state.IsAutoCrafting = false;
+                state.IsCrafting = false;
             });
             ApplyEffectToObject(DurationType.Temporary, EffectCutsceneParalyze(), player, craftingDelay);
         }
@@ -466,7 +503,7 @@ namespace SWLOR.Game.Server.Service
             var state = GetPlayerCraftingState(player);
             var recipe = GetRecipe(state.SelectedRecipe);
             var remainingComponents = recipe.Components.ToDictionary(x => x.Key, y => y.Value);
-            var components = GetComponents(player, device);
+            var (components, itemMod) = GetComponents(player, device);
 
             for (var index = components.Count - 1; index >= 0; index--)
             {
@@ -503,20 +540,33 @@ namespace SWLOR.Game.Server.Service
         /// <param name="player">The player object</param>
         /// <param name="device">The crafting device</param>
         /// <returns>A list of item object Ids </returns>
-        private static List<uint> GetComponents(uint player, uint device)
+        private static (List<uint>, uint) GetComponents(uint player, uint device)
         {
             var playerComponents = new List<uint>();
             var model = GetPlayerCraftingState(player);
             var recipe = GetRecipe(model.SelectedRecipe);
+            var itemMod = OBJECT_INVALID;
 
             for (var item = GetFirstItemInInventory(device); GetIsObjectValid(item); item = GetNextItemInInventory(device))
             {
+                var tag = GetTag(item);
                 var resref = GetResRef(item);
+
+                // Check if this is a valid component and add it if it is.
                 if (recipe.Components.ContainsKey(resref))
+                {
                     playerComponents.Add(item);
+                }
+                // Otherwise check if this is a valid item mod and one hasn't been picked already.
+                else if (itemMod == OBJECT_INVALID && 
+                         _itemMods.ContainsKey(tag) &&
+                         _itemMods[tag].ModType == recipe.ModType)
+                {
+                    itemMod = item;
+                }
             }
 
-            return playerComponents;
+            return (playerComponents, itemMod);
         }
 
         /// <summary>

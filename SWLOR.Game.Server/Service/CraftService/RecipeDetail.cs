@@ -13,7 +13,7 @@ namespace SWLOR.Game.Server.Service.CraftService
         public RecipeCategoryType Category { get; set; }
         public bool IsActive { get; set; }
         public int Level { get; set; }
-        public bool HasModSlot { get; set; }
+        public ItemModType ModType { get; set; }
 
         public RecipeDetail()
         {

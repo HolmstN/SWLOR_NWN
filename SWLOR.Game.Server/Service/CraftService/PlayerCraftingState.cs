@@ -7,7 +7,7 @@ namespace SWLOR.Game.Server.Service.CraftService
         public RecipeType SelectedRecipe { get; set; }
         public SkillType DeviceSkillType { get; set; }
         public bool IsOpeningMenu { get; set; }
-        public bool IsAutoCrafting { get; set; }
+        public bool IsCrafting { get; set; }
 
         public PlayerCraftingState()
         {

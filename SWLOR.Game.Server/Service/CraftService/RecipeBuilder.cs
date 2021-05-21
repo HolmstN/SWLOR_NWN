@@ -125,6 +125,17 @@ namespace SWLOR.Game.Server.Service.CraftService
         }
 
         /// <summary>
+        /// Indicates this recipe has a mod slot of a specific type.
+        /// Recipes may only ever have one type of mod slot.
+        /// </summary>
+        /// <returns>A recipe builder with the configured options</returns>
+        public RecipeBuilder HasModSlot(ItemModType modType)
+        {
+            _activeRecipe.ModType = modType;
+            return this;
+        }
+
+        /// <summary>
         /// Returns a built list of recipes.
         /// </summary>
         /// <returns>A list of built recipes.</returns>

@@ -1,6 +1,7 @@
 ﻿using SWLOR.Game.Server.Core.NWNX;
 using SWLOR.Game.Server.Enumeration;
 using SWLOR.Game.Server.Service;
+using SWLOR.Game.Server.Service.CraftService;
 using SWLOR.Game.Server.Service.DialogService;
 using static SWLOR.Game.Server.Core.NWScript.NWScript;
 
@@ -224,6 +225,20 @@ namespace SWLOR.Game.Server.Feature.DialogDefinition
 
                 // Chance to craft
                 header += $"{ColorToken.Green("Success Chance:")} {Craft.CalculateChanceToCraft(player, model.SelectedRecipe)}%";
+
+                // Mod slot
+                if (recipe.ModType == ItemModType.Armor)
+                {
+                    header += $"{ColorToken.Green("Mod Slot:")} Armor";
+                }
+                else if (recipe.ModType == ItemModType.Weapon)
+                {
+                    header += $"{ColorToken.Green("Mod Slot:")} Weapon";
+                }
+                else
+                {
+                    header += $"{ColorToken.Green("Mod Slot:")} None";
+                }
 
                 // List of requirements, if applicable.
                 if (recipe.Requirements.Count > 0)
