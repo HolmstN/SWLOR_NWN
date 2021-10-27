@@ -122,12 +122,12 @@ namespace SWLOR.Game.Server.Service
         {
             NWPlayer sender = OBJECT_SELF;
             if (!sender.IsPlayer && !sender.IsDM) return;
-            string text = NWNXChat.GetMessage();
+            string text = ChatPlugin.GetMessage();
             if (string.IsNullOrWhiteSpace(text)) return;
 
-            var mode = NWNXChat.GetChannel();
+            var mode = ChatPlugin.GetChannel();
             int channel = ConvertNWNXChatChannelIDToDatabaseID(mode);
-            NWObject recipient = NWNXChat.GetTarget();
+            NWObject recipient = ChatPlugin.GetTarget();
             var channelEntity = DataService.ChatChannel.GetByID(channel);
 
             // Sender - should always have this data.
@@ -207,29 +207,29 @@ namespace SWLOR.Game.Server.Service
             switch (eventID)
             {
                 case 1: // Spawn Creature
-                    var area = _.StringToObject(NWNXEvents.GetEventData("AREA"));
+                    var area = _.StringToObject(EventsPlugin.GetEventData("AREA"));
                     string areaName = GetName(area);
-                    NWCreature creature = _.StringToObject(NWNXEvents.GetEventData("OBJECT"));
-                    int objectTypeID = Convert.ToInt32(NWNXEvents.GetEventData("OBJECT_TYPE"));
-                    float x = (float)Convert.ToDouble(NWNXEvents.GetEventData("POS_X"));
-                    float y = (float)Convert.ToDouble(NWNXEvents.GetEventData("POS_Y"));
-                    float z = (float)Convert.ToDouble(NWNXEvents.GetEventData("POS_Z"));
+                    NWCreature creature = _.StringToObject(EventsPlugin.GetEventData("OBJECT"));
+                    int objectTypeID = Convert.ToInt32(EventsPlugin.GetEventData("OBJECT_TYPE"));
+                    float x = (float)Convert.ToDouble(EventsPlugin.GetEventData("POS_X"));
+                    float y = (float)Convert.ToDouble(EventsPlugin.GetEventData("POS_Y"));
+                    float z = (float)Convert.ToDouble(EventsPlugin.GetEventData("POS_Z"));
                     SetLocalBool(creature, "DM_SPAWNED", true);
                     details = areaName + "," + creature.Name + "," + objectTypeID + "," + x + "," + y + "," + z;
                     break;
                 case 22: // Give XP
-                    amount = Convert.ToInt32(NWNXEvents.GetEventData("AMOUNT"));
-                    target = _.StringToObject(NWNXEvents.GetEventData("OBJECT"));
+                    amount = Convert.ToInt32(EventsPlugin.GetEventData("AMOUNT"));
+                    target = _.StringToObject(EventsPlugin.GetEventData("OBJECT"));
                     details = amount + "," + target.Name;
                     break;
                 case 23: // Give Level
-                    amount = Convert.ToInt32(NWNXEvents.GetEventData("AMOUNT"));
-                    target = _.StringToObject(NWNXEvents.GetEventData("OBJECT"));
+                    amount = Convert.ToInt32(EventsPlugin.GetEventData("AMOUNT"));
+                    target = _.StringToObject(EventsPlugin.GetEventData("OBJECT"));
                     details = amount + "," + target.Name;
                     break;
                 case 24: // Give Gold
-                    amount = Convert.ToInt32(NWNXEvents.GetEventData("AMOUNT"));
-                    target = _.StringToObject(NWNXEvents.GetEventData("OBJECT"));
+                    amount = Convert.ToInt32(EventsPlugin.GetEventData("AMOUNT"));
+                    target = _.StringToObject(EventsPlugin.GetEventData("OBJECT"));
                     details = amount + "," + target.Name;
                     break;
             }

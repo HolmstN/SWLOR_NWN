@@ -464,33 +464,33 @@ namespace SWLOR.Game.Server.Service
                 // Add the feat(s) to the player if it doesn't exist yet.
                 if (perkFeatToGrant != null && _.GetHasFeat((Feat)perkFeatToGrant.FeatID, oPC.Object) == false)
                 {
-                    NWNXCreature.AddFeatByLevel(oPC, (Feat)perkFeatToGrant.FeatID, 1);
+                    CreaturePlugin.AddFeatByLevel(oPC, (Feat)perkFeatToGrant.FeatID, 1);
 
-                    var qbs = NWNXPlayerQuickBarSlot.UseFeat((Feat)perkFeatToGrant.FeatID);
+                    var qbs = PlayerQuickBarSlot.UseFeat((Feat)perkFeatToGrant.FeatID);
 
                     // Try to add the new feat to the player's hotbar.
-                    if (NWNXPlayer.GetQuickBarSlot(oPC, 0).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 0, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 1).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 1, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 2).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 2, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 3).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 3, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 4).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 4, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 5).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 5, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 6).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 6, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 7).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 7, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 8).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 8, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 9).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 9, qbs);
-                    else if (NWNXPlayer.GetQuickBarSlot(oPC, 10).ObjectType == QuickBarSlotType.Empty)
-                        NWNXPlayer.SetQuickBarSlot(oPC, 10, qbs);
+                    if (PlayerPlugin.GetQuickBarSlot(oPC, 0).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 0, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 1).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 1, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 2).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 2, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 3).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 3, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 4).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 4, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 5).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 5, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 6).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 6, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 7).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 7, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 8).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 8, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 9).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 9, qbs);
+                    else if (PlayerPlugin.GetQuickBarSlot(oPC, 10).ObjectType == QuickBarSlotType.Empty)
+                        PlayerPlugin.SetQuickBarSlot(oPC, 10, qbs);
                 }
 
                 oPC.SendMessage(ColorTokenService.Green("Perk Purchased: " + perk.Name + " (Lvl. " + pcPerk.PerkLevel + ")"));

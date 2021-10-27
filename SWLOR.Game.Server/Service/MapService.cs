@@ -77,7 +77,7 @@ namespace SWLOR.Game.Server.Service
                 action = DatabaseActionType.Insert;
             }
 
-            map.Progression = NWNXPlayer.GetAreaExplorationState(player, area);
+            map.Progression = PlayerPlugin.GetAreaExplorationState(player, area);
             DataService.SubmitDataChange(map, action);
         }
 
@@ -92,7 +92,7 @@ namespace SWLOR.Game.Server.Service
                 return;
             }
             
-            NWNXPlayer.SetAreaExplorationState(player, area, map.Progression);
+            PlayerPlugin.SetAreaExplorationState(player, area, map.Progression);
         }
 
 

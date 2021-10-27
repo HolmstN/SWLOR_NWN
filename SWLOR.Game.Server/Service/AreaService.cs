@@ -200,7 +200,7 @@ namespace SWLOR.Game.Server.Service
         private static void OnAreaEnter()
         {
             NWArea area = _.OBJECT_SELF;
-            int playerCount = NWNXArea.GetNumberOfPlayersInArea(area);
+            int playerCount = AreaPlugin.GetNumberOfPlayersInArea(area);
             if (playerCount > 0)
                 _.SetEventScript(area, EventScript.Area_OnHeartbeat, "area_on_hb");
             else
@@ -210,7 +210,7 @@ namespace SWLOR.Game.Server.Service
         private static void OnAreaExit()
         {
             NWArea area = _.OBJECT_SELF;
-            int playerCount = NWNXArea.GetNumberOfPlayersInArea(area);
+            int playerCount = AreaPlugin.GetNumberOfPlayersInArea(area);
             if (playerCount > 0)
                 _.SetEventScript(area, EventScript.Area_OnHeartbeat, "area_on_hb");
             else

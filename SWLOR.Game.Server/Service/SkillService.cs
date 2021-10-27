@@ -1096,11 +1096,11 @@ namespace SWLOR.Game.Server.Service
                     int costTableID = Cached2DAService.ImmunityCosts.Single(x => x.Value == newImmunity).Key;
 
                     // Unpack the IP and adjust its value.
-                    var unpacked = NWNXItemProperty.UnpackIP(ip);
+                    var unpacked = ItemPropertyPlugin.UnpackIP(ip);
                     unpacked.CostTableValue = costTableID;
 
                     // Add it to the list for later application. We don't want to do this right now, for fear of an infinite loop.
-                    var packed = NWNXItemProperty.PackIP(unpacked);
+                    var packed = ItemPropertyPlugin.PackIP(unpacked);
                     ipsToApply.Add(packed);
 
                     // Remove this version of the item property.
@@ -1258,9 +1258,9 @@ namespace SWLOR.Game.Server.Service
                     {
                         // Unpack the IP, modify the value back to original, then add it to the list to be applied later.
                         // Remove this version of the IP.
-                        var unpacked = NWNXItemProperty.UnpackIP(ip);
+                        var unpacked = ItemPropertyPlugin.UnpackIP(ip);
                         unpacked.CostTableValue = costTableID;
-                        var packed = NWNXItemProperty.PackIP(unpacked);
+                        var packed = ItemPropertyPlugin.PackIP(unpacked);
                         ipsToApply.Add(packed);
 
                         RemoveItemProperty(item, ip);

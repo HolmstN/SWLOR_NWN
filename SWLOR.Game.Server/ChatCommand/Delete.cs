@@ -55,7 +55,7 @@ namespace SWLOR.Game.Server.ChatCommand
 
                 _.DelayCommand(6.0f, () =>
                 {
-                    NWNXAdmin.DeletePlayerCharacter(user, true);
+                    AdministrationPlugin.DeletePlayerCharacter(user, true);
                 });
 
             }

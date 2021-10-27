@@ -76,7 +76,7 @@ namespace SWLOR.Game.Server.Perk.Armor
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.Provoke);
+            CreaturePlugin.RemoveFeat(creature, Feat.Provoke);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)
@@ -101,11 +101,11 @@ namespace SWLOR.Game.Server.Perk.Armor
             
             if (equipped.Equals(oItem) || equipped.CustomItemType != CustomItemType.HeavyArmor)
             {
-                NWNXCreature.RemoveFeat(creature, Feat.Provoke);
+                CreaturePlugin.RemoveFeat(creature, Feat.Provoke);
                 return;
             }
 
-            NWNXCreature.AddFeat(creature, Feat.Provoke);
+            CreaturePlugin.AddFeat(creature, Feat.Provoke);
         }
 
         public bool IsHostile()

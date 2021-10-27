@@ -129,7 +129,7 @@ namespace SWLOR.Game.Server.Service
         /// </summary>
         private static void OnModuleNWNXChat()
         {
-            NWPlayer player = NWNXChat.GetSender();
+            NWPlayer player = ChatPlugin.GetSender();
             if (!CanHandleChat(player)) return;
 
             var model = GetPlayerMarketData(player);
@@ -138,12 +138,12 @@ namespace SWLOR.Game.Server.Service
             if (!model.IsSettingSellerNote) return;
             model.IsSettingSellerNote = false;
 
-            var message = NWNXChat.GetMessage();
+            var message = ChatPlugin.GetMessage();
             message = message.Truncate(1024);
             model.SellerNote = message;
 
             player.FloatingText("Seller note set! Please click 'Refresh' to see the changes.");
-            NWNXChat.SkipMessage();
+            ChatPlugin.SkipMessage();
         }
 
         /// <summary>

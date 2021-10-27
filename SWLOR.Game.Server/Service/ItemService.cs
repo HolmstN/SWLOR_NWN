@@ -118,11 +118,11 @@ namespace SWLOR.Game.Server.Service
         private static void OnItemUsed()
         {
             NWPlayer user = _.OBJECT_SELF;
-            NWItem oItem = _.StringToObject(NWNXEvents.GetEventData("ITEM_OBJECT_ID"));
-            NWObject target = _.StringToObject(NWNXEvents.GetEventData("TARGET_OBJECT_ID"));
-            var targetPositionX = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_X"));
-            var targetPositionY = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_Y"));
-            var targetPositionZ = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_Z"));
+            NWItem oItem = _.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID"));
+            NWObject target = _.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID"));
+            var targetPositionX = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_X"));
+            var targetPositionY = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_Y"));
+            var targetPositionZ = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_Z"));
             var targetPosition = Vector3(targetPositionX, targetPositionY, targetPositionZ);
             Location targetLocation = Location(user.Area, targetPosition, 0.0f);
 
@@ -137,7 +137,7 @@ namespace SWLOR.Game.Server.Service
             if (string.IsNullOrWhiteSpace(className)) return;
 
             // Bypass the NWN "item use" animation.
-            NWNXEvents.SkipEvent();
+            EventsPlugin.SkipEvent();
 
             user.ClearAllActions();
 
@@ -207,7 +207,7 @@ namespace SWLOR.Game.Server.Service
 
             if(delay > 0.0f)
             {
-                NWNXPlayer.StartGuiTimingBar(user, delay, string.Empty);
+                PlayerPlugin.StartGuiTimingBar(user, delay, string.Empty);
             }
 
             var @event = new OnFinishActionItem(className, user, oItem, target, targetLocation, userPosition, customData);
@@ -886,11 +886,11 @@ namespace SWLOR.Game.Server.Service
 
         private static void OnModuleNWNXChat()
         {
-            NWPlayer player = NWNXChat.GetSender();
+            NWPlayer player = ChatPlugin.GetSender();
 
             if (!CanHandleChat(player)) return;
-            string message = NWNXChat.GetMessage();
-            NWNXChat.SkipMessage();
+            string message = ChatPlugin.GetMessage();
+            ChatPlugin.SkipMessage();
 
             message = message.Truncate(50);
             player.SetLocalString("RENAMED_ITEM_NEW_NAME", message);

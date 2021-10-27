@@ -251,7 +251,7 @@ namespace SWLOR.Game.Server.Service
                 foreach (var area in NWModule.Get().Areas)
                 {
                     int lastTickPlayerCount = area.GetLocalInt("AI_PLAYER_COUNT");
-                    int thisTickPlayerCount = NWNXArea.GetNumberOfPlayersInArea(area);
+                    int thisTickPlayerCount = AreaPlugin.GetNumberOfPlayersInArea(area);
                     area.SetLocalInt("AI_PLAYER_COUNT", thisTickPlayerCount);
 
                     // AI gets processed one more time after an area becomes empty.

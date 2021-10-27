@@ -51,12 +51,12 @@ namespace SWLOR.Game.Server.Service
                 });
 
                 // Capture original stats before we level up the player.
-                int str = NWNXCreature.GetRawAbilityScore(player, AbilityType.Strength);
-                int con = NWNXCreature.GetRawAbilityScore(player, AbilityType.Constitution);
-                int dex = NWNXCreature.GetRawAbilityScore(player, AbilityType.Dexterity);
-                int @int = NWNXCreature.GetRawAbilityScore(player, AbilityType.Intelligence);
-                int wis = NWNXCreature.GetRawAbilityScore(player, AbilityType.Wisdom);
-                int cha = NWNXCreature.GetRawAbilityScore(player, AbilityType.Charisma);
+                int str = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Strength);
+                int con = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Constitution);
+                int dex = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Dexterity);
+                int @int = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Intelligence);
+                int wis = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Wisdom);
+                int cha = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Charisma);
 
                 // Take player to level 5 in NWN levels so that we have access to more HP slots
                 GiveXPToCreature(player, 10000);
@@ -67,12 +67,12 @@ namespace SWLOR.Game.Server.Service
                 }
 
                 // Set stats back to how they were on entry.
-                NWNXCreature.SetRawAbilityScore(player, AbilityType.Strength, str);
-                NWNXCreature.SetRawAbilityScore(player, AbilityType.Constitution, con);
-                NWNXCreature.SetRawAbilityScore(player, AbilityType.Dexterity, dex);
-                NWNXCreature.SetRawAbilityScore(player, AbilityType.Intelligence, @int);
-                NWNXCreature.SetRawAbilityScore(player, AbilityType.Wisdom, wis);
-                NWNXCreature.SetRawAbilityScore(player, AbilityType.Charisma, cha);
+                CreaturePlugin.SetRawAbilityScore(player, AbilityType.Strength, str);
+                CreaturePlugin.SetRawAbilityScore(player, AbilityType.Constitution, con);
+                CreaturePlugin.SetRawAbilityScore(player, AbilityType.Dexterity, dex);
+                CreaturePlugin.SetRawAbilityScore(player, AbilityType.Intelligence, @int);
+                CreaturePlugin.SetRawAbilityScore(player, AbilityType.Wisdom, wis);
+                CreaturePlugin.SetRawAbilityScore(player, AbilityType.Charisma, cha);
 
                 NWItem knife = (CreateItemOnObject("survival_knife", player));
                 knife.Name = player.Name + "'s Survival Knife";
@@ -87,31 +87,31 @@ namespace SWLOR.Game.Server.Service
                 NWItem dyeKit = (CreateItemOnObject("tk_omnidye", player));
                 dyeKit.IsCursed = true;
                 
-                int numberOfFeats = NWNXCreature.GetFeatCount(player);
+                int numberOfFeats = CreaturePlugin.GetFeatCount(player);
                 for (int currentFeat = numberOfFeats; currentFeat >= 0; currentFeat--)
                 {
-                    NWNXCreature.RemoveFeat(player, NWNXCreature.GetFeatByIndex(player, currentFeat - 1));
+                    CreaturePlugin.RemoveFeat(player, CreaturePlugin.GetFeatByIndex(player, currentFeat - 1));
                 }
 
-                NWNXCreature.AddFeatByLevel(player, Feat.ArmorProficiencyLight, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.ArmorProficiencyMedium, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.ArmorProficiencyHeavy, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.ShieldProficiency, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.WeaponProficiencyExotic, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.WeaponProficiencyMartial, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.WeaponProficiencySimple, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.UncannyDodge1, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.StructureManagementTool, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.OpenRestMenu, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.RenameCraftedItem, 1);
-                NWNXCreature.AddFeatByLevel(player, Feat.ChatCommandTargeter, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.ArmorProficiencyLight, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.ArmorProficiencyMedium, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.ArmorProficiencyHeavy, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.ShieldProficiency, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.WeaponProficiencyExotic, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.WeaponProficiencyMartial, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.WeaponProficiencySimple, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.UncannyDodge1, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.StructureManagementTool, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.OpenRestMenu, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.RenameCraftedItem, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.ChatCommandTargeter, 1);
 
                 foreach (var skillType in Enum.GetValues(typeof(Skill)))
                 {
                     var skill = (Skill) skillType;
                     if (skill == Skill.Invalid || skill == Skill.AllSkills) continue;
 
-                    NWNXCreature.SetSkillRank(player, skill, 0);
+                    CreaturePlugin.SetSkillRank(player, skill, 0);
                 }
                 SetFortitudeSavingThrow(player, 0);
                 SetReflexSavingThrow(player, 0);
@@ -121,7 +121,7 @@ namespace SWLOR.Game.Server.Service
 
                 for (int index = 0; index <= 255; index++)
                 {
-                    NWNXCreature.RemoveKnownSpell(player, classType, 0, index);
+                    CreaturePlugin.RemoveKnownSpell(player, classType, 0, index);
                 }
 
                 Player entity = CreateDBPCEntity(player);
@@ -143,8 +143,8 @@ namespace SWLOR.Game.Server.Service
                 }
 
                 RaceService.ApplyDefaultAppearance(player);
-                NWNXCreature.SetAlignmentLawChaos(player, 50);
-                NWNXCreature.SetAlignmentGoodEvil(player, 50);
+                CreaturePlugin.SetAlignmentLawChaos(player, 50);
+                CreaturePlugin.SetAlignmentGoodEvil(player, 50);
                 BackgroundService.ApplyBackgroundBonuses(player);
 
                 PlayerStatService.ApplyStatChanges(player, null, true);
@@ -240,12 +240,12 @@ namespace SWLOR.Game.Server.Service
                 RespawnLocationOrientation = 0.0f,
                 DateSanctuaryEnds = DateTime.UtcNow + TimeSpan.FromDays(3),
                 IsSanctuaryOverrideEnabled = false,
-                STRBase = NWNXCreature.GetRawAbilityScore(player, AbilityType.Strength),
-                DEXBase = NWNXCreature.GetRawAbilityScore(player, AbilityType.Dexterity),
-                CONBase = NWNXCreature.GetRawAbilityScore(player, AbilityType.Constitution),
-                INTBase = NWNXCreature.GetRawAbilityScore(player, AbilityType.Intelligence),
-                WISBase = NWNXCreature.GetRawAbilityScore(player, AbilityType.Wisdom),
-                CHABase = NWNXCreature.GetRawAbilityScore(player, AbilityType.Charisma),
+                STRBase = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Strength),
+                DEXBase = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Dexterity),
+                CONBase = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Constitution),
+                INTBase = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Intelligence),
+                WISBase = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Wisdom),
+                CHABase = CreaturePlugin.GetRawAbilityScore(player, AbilityType.Charisma),
                 TotalSPAcquired = 0,
                 DisplayHelmet = true,
                 PrimaryResidencePCBaseStructureID = null,
@@ -459,21 +459,21 @@ namespace SWLOR.Game.Server.Service
                 
         private static void InitializeHotBar(NWPlayer player)
         {
-            var openRestMenu = NWNXPlayerQuickBarSlot.UseFeat(Feat.OpenRestMenu);
-            var structure = NWNXPlayerQuickBarSlot.UseFeat(Feat.StructureManagementTool);
-            var renameCraftedItem = NWNXPlayerQuickBarSlot.UseFeat(Feat.RenameCraftedItem);
-            var chatCommandTargeter = NWNXPlayerQuickBarSlot.UseFeat(Feat.ChatCommandTargeter);
+            var openRestMenu = PlayerQuickBarSlot.UseFeat(Feat.OpenRestMenu);
+            var structure = PlayerQuickBarSlot.UseFeat(Feat.StructureManagementTool);
+            var renameCraftedItem = PlayerQuickBarSlot.UseFeat(Feat.RenameCraftedItem);
+            var chatCommandTargeter = PlayerQuickBarSlot.UseFeat(Feat.ChatCommandTargeter);
 
-            NWNXPlayer.SetQuickBarSlot(player, 0, openRestMenu);
-            NWNXPlayer.SetQuickBarSlot(player, 1, structure);
-            NWNXPlayer.SetQuickBarSlot(player, 2, renameCraftedItem);
-            NWNXPlayer.SetQuickBarSlot(player, 3, chatCommandTargeter);
+            PlayerPlugin.SetQuickBarSlot(player, 0, openRestMenu);
+            PlayerPlugin.SetQuickBarSlot(player, 1, structure);
+            PlayerPlugin.SetQuickBarSlot(player, 2, renameCraftedItem);
+            PlayerPlugin.SetQuickBarSlot(player, 3, chatCommandTargeter);
         }
 
         private static void OnModuleUseFeat()
         {
             NWPlayer pc = (OBJECT_SELF);
-            int featID = Convert.ToInt32(NWNXEvents.GetEventData("FEAT_ID"));
+            int featID = Convert.ToInt32(EventsPlugin.GetEventData("FEAT_ID"));
 
             if (featID != (int)Feat.OpenRestMenu) return;
             pc.ClearAllActions();

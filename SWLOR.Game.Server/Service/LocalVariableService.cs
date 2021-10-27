@@ -11,10 +11,10 @@ namespace SWLOR.Game.Server.Service
     {
         public static void CopyVariables(NWObject oSource, NWObject oCopy)
         {
-            int variableCount = NWNXObject.GetLocalVariableCount(oSource);
+            int variableCount = ObjectPlugin.GetLocalVariableCount(oSource);
             for (int variableIndex = 0; variableIndex < variableCount - 1; variableIndex++)
             {
-                NWNXObject.LocalVariable stCurVar = NWNXObject.GetLocalVariable(oSource, variableIndex);
+                ObjectPlugin.LocalVariable stCurVar = ObjectPlugin.GetLocalVariable(oSource, variableIndex);
 
                 switch (stCurVar.Type)
                 {

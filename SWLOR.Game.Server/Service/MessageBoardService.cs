@@ -19,11 +19,11 @@ namespace SWLOR.Game.Server.Service
 
         private static void OnModuleNWNXChat()
         {
-            NWPlayer player = NWNXChat.GetSender();
+            NWPlayer player = ChatPlugin.GetSender();
             
             if (!CanHandleChat(player)) return;
-            string message = NWNXChat.GetMessage();
-            NWNXChat.SkipMessage();
+            string message = ChatPlugin.GetMessage();
+            ChatPlugin.SkipMessage();
 
             player.SetLocalString("MESSAGE_BOARD_TEXT", message);
             player.SendMessage("Please click the 'Set Title' or 'Set Message' option in the menu.");

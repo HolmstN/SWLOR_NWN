@@ -3,7 +3,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXChat
+    public static class ChatPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Chat";
 

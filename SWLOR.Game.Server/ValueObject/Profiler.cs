@@ -11,7 +11,7 @@ namespace SWLOR.Game.Server.ValueObject
             // Verify the profiler env variable is specified. This prevents our unit tests from failing.
             if(!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("NWNX_PROFILER_SKIP")))
             {
-                NWNXProfiler.PushPerfScope(name, "MonoScript", "Script");
+                ProfilerPlugin.PushPerfScope(name, "MonoScript", "Script");
             }
         }
 
@@ -20,7 +20,7 @@ namespace SWLOR.Game.Server.ValueObject
             // Verify the profiler env variable is specified. This prevents our unit tests from failing.
             if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("NWNX_PROFILER_SKIP")))
             {
-                NWNXProfiler.PopPerfScope();
+                ProfilerPlugin.PopPerfScope();
             }
         }
     }

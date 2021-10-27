@@ -48,7 +48,7 @@ namespace SWLOR.Game.Server.Perk.MartialArts
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.CircleKick);
+            CreaturePlugin.RemoveFeat(creature, Feat.CircleKick);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)
@@ -98,11 +98,11 @@ namespace SWLOR.Game.Server.Perk.MartialArts
 
             if (receivesFeat)
             {
-                NWNXCreature.AddFeat(creature, Feat.CircleKick);
+                CreaturePlugin.AddFeat(creature, Feat.CircleKick);
             }
             else
             {
-                NWNXCreature.RemoveFeat(creature, Feat.CircleKick);
+                CreaturePlugin.RemoveFeat(creature, Feat.CircleKick);
             }
         }
         public bool IsHostile()

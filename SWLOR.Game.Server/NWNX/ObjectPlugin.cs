@@ -4,7 +4,7 @@ using SWLOR.Game.Server.NWN;
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public class NWNXObject
+    public class ObjectPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Object";
 

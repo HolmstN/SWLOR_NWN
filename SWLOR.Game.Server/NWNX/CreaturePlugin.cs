@@ -5,7 +5,7 @@ using static SWLOR.Game.Server.NWN._;
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXCreature
+    public static class CreaturePlugin
     {
         private const string PLUGIN_NAME = "NWNX_Creature";
 

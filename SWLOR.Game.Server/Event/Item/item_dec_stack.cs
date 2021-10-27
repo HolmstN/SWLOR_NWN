@@ -23,7 +23,7 @@ namespace NWN.Scripts
                item.BaseItemType == BaseItem.Dart ||
                item.BaseItemType == BaseItem.ThrowingAxe)
             {
-                NWNXEvents.SkipEvent();
+                EventsPlugin.SkipEvent();
             }
 
             MessageHub.Instance.Publish(new OnItemDecrementStack(), false);

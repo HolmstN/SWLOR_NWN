@@ -45,7 +45,7 @@ namespace SWLOR.Game.Server.Perk.OneHanded
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.CalledShot);
+            CreaturePlugin.RemoveFeat(creature, Feat.CalledShot);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)
@@ -72,11 +72,11 @@ namespace SWLOR.Game.Server.Perk.OneHanded
             
             if (Equals(equipped, oItem) || equipped.CustomItemType != CustomItemType.FinesseVibroblade)
             {
-                NWNXCreature.RemoveFeat(creature, Feat.CalledShot);
+                CreaturePlugin.RemoveFeat(creature, Feat.CalledShot);
                 return;
             }
 
-            NWNXCreature.AddFeat(creature, Feat.CalledShot);
+            CreaturePlugin.AddFeat(creature, Feat.CalledShot);
         }
 
         public bool IsHostile()

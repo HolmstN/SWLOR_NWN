@@ -86,7 +86,7 @@ namespace SWLOR.Game.Server.Service
         private static void OnModuleNWNXChat()
         {
             NWPlayer sender = _.OBJECT_SELF;
-            string originalMessage = NWNXChat.GetMessage().Trim();
+            string originalMessage = ChatPlugin.GetMessage().Trim();
 
             if (!CanHandleChat(sender, originalMessage))
             {
@@ -103,7 +103,7 @@ namespace SWLOR.Game.Server.Service
             string command = split[0].Substring(1, split[0].Length - 1);
             split.RemoveAt(0);
 
-            NWNXChat.SkipMessage();
+            ChatPlugin.SkipMessage();
 
             if (!IsChatCommandRegistered(command))
             {
@@ -133,14 +133,14 @@ namespace SWLOR.Game.Server.Service
 
                 if (_.GetHasFeat(Feat.ChatCommandTargeter, sender) || sender.IsDM)
                 {
-                    NWNXCreature.AddFeatByLevel(sender, Feat.ChatCommandTargeter, 1);
+                    CreaturePlugin.AddFeatByLevel(sender, Feat.ChatCommandTargeter, 1);
 
                     if(sender.IsDM)
                     {
-                        var qbs = NWNXPlayer.GetQuickBarSlot(sender, 11);
+                        var qbs = PlayerPlugin.GetQuickBarSlot(sender, 11);
                         if (qbs.ObjectType == QuickBarSlotType.Empty)
                         {
-                            NWNXPlayer.SetQuickBarSlot(sender, 11, NWNXPlayerQuickBarSlot.UseFeat(Feat.ChatCommandTargeter));
+                            PlayerPlugin.SetQuickBarSlot(sender, 11, PlayerQuickBarSlot.UseFeat(Feat.ChatCommandTargeter));
                         }
                     }
                 }
@@ -152,16 +152,16 @@ namespace SWLOR.Game.Server.Service
         private static void OnModuleUseFeat()
         {
             NWPlayer pc = _.OBJECT_SELF;
-            int featID = Convert.ToInt32(NWNXEvents.GetEventData("FEAT_ID")); 
+            int featID = Convert.ToInt32(EventsPlugin.GetEventData("FEAT_ID")); 
 
             if (featID != (int)Feat.ChatCommandTargeter) return;
 
-            var target = _.StringToObject(NWNXEvents.GetEventData("TARGET_OBJECT_ID"));
-            var targetPositionX = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_X"));
-            var targetPositionY = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_Y"));
-            var targetPositionZ = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_Z"));
+            var target = _.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID"));
+            var targetPositionX = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_X"));
+            var targetPositionY = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_Y"));
+            var targetPositionZ = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_Z"));
             var targetPosition = Vector3(targetPositionX, targetPositionY, targetPositionZ);
-            var targetArea = _.StringToObject( NWNXEvents.GetEventData("AREA_OBJECT_ID"));
+            var targetArea = _.StringToObject( EventsPlugin.GetEventData("AREA_OBJECT_ID"));
 
             var targetLocation = Location(targetArea, targetPosition, 0.0f);
             string command = pc.GetLocalString("CHAT_COMMAND");

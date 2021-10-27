@@ -374,7 +374,7 @@ namespace SWLOR.Game.Server.Service
         private static void ToggleCreatureEvents(NWArea area)
         {
             AreaSpawn areaSpawn = AreaSpawns[area];
-            int playerCount = NWNXArea.GetNumberOfPlayersInArea(area);
+            int playerCount = AreaPlugin.GetNumberOfPlayersInArea(area);
 
             foreach (var creature in areaSpawn.Creatures)
             {
@@ -419,7 +419,7 @@ namespace SWLOR.Game.Server.Service
                     if (!spawn.Key.IsValid) continue;
 
                     // Ignore empty areas.
-                    int playerCount = NWNXArea.GetNumberOfPlayersInArea(spawn.Key);
+                    int playerCount = AreaPlugin.GetNumberOfPlayersInArea(spawn.Key);
                     if (playerCount <= 0 && hasRunOnce) continue;
 
                     AreaSpawn areaSpawn = spawn.Value;

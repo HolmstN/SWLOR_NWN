@@ -72,7 +72,7 @@ namespace SWLOR.Game.Server.Processor
                         _.BootPC(player, "Server is automatically rebooting. This is a temporary solution until we can fix performance problems. Thank you for your patience and understanding.");
                     }
 
-                    NWNXAdmin.ShutdownServer();
+                    AdministrationPlugin.ShutdownServer();
                 }
                 else if (now >= _nextNotification)
                 {

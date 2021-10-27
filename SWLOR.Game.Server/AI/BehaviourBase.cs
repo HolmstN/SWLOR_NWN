@@ -70,9 +70,9 @@ namespace SWLOR.Game.Server.AI
                 NWPlayer player = (GetLastSpeaker());
                 DialogService.StartConversation(player, self, convo);
             }
-            else if (!string.IsNullOrWhiteSpace(NWNXObject.GetDialogResref(self)))
+            else if (!string.IsNullOrWhiteSpace(ObjectPlugin.GetDialogResref(self)))
             {
-                BeginConversation(NWNXObject.GetDialogResref(self));
+                BeginConversation(ObjectPlugin.GetDialogResref(self));
             }
         }
 
@@ -97,7 +97,7 @@ namespace SWLOR.Game.Server.AI
         public virtual void OnHeartbeat(NWCreature self)
         {
             // No sense processing for empty and invalid (limbo) areas.
-            if (!self.Area.IsValid || NWNXArea.GetNumberOfPlayersInArea(self.Area) <= 0) return;
+            if (!self.Area.IsValid || AreaPlugin.GetNumberOfPlayersInArea(self.Area) <= 0) return;
 
             var flags = GetAIFlags(self);
 

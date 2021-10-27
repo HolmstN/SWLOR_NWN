@@ -3,7 +3,7 @@ using static SWLOR.Game.Server.NWN._;
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXPlayerQuickBarSlot
+    public static class PlayerQuickBarSlot
     {
         /// <summary>
         /// Create an empty QBS of given type

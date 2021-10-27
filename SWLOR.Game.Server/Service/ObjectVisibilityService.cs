@@ -54,9 +54,9 @@ namespace SWLOR.Game.Server.Service
                 var obj = AppCache.VisibilityObjects[visibility.VisibilityObjectID];
 
                 if (visibility.IsVisible)
-                    NWNXVisibility.SetVisibilityOverride(player, obj, VisibilityType.Visible);
+                    VisibilityPlugin.SetVisibilityOverride(player, obj, VisibilityType.Visible);
                 else
-                    NWNXVisibility.SetVisibilityOverride(player, obj, VisibilityType.Hidden);
+                    VisibilityPlugin.SetVisibilityOverride(player, obj, VisibilityType.Hidden);
             }
 
             // Hide any objects which are hidden by default, as long as player doesn't have an override already.
@@ -66,7 +66,7 @@ namespace SWLOR.Game.Server.Service
                 var matchingVisibility = visibilities.SingleOrDefault(x => x.PlayerID == player.GlobalID && x.VisibilityObjectID.ToString() == visibilityObjectID);
                 if (GetLocalBool(visibilityObject.Value, "VISIBILITY_HIDDEN_DEFAULT") == true && matchingVisibility == null)
                 {
-                    NWNXVisibility.SetVisibilityOverride(player, visibilityObject.Value, VisibilityType.Hidden);
+                    VisibilityPlugin.SetVisibilityOverride(player, visibilityObject.Value, VisibilityType.Hidden);
                 }
             }
 
@@ -97,14 +97,14 @@ namespace SWLOR.Game.Server.Service
                 if (visibility == null)
                 {
                     if(GetLocalBool(target, "VISIBILITY_HIDDEN_DEFAULT") == true)
-                        NWNXVisibility.SetVisibilityOverride(player, target, VisibilityType.Hidden);
+                        VisibilityPlugin.SetVisibilityOverride(player, target, VisibilityType.Hidden);
                     continue;
                 }
 
                 if(visibility.IsVisible)
-                    NWNXVisibility.SetVisibilityOverride(player, target, VisibilityType.Visible);
+                    VisibilityPlugin.SetVisibilityOverride(player, target, VisibilityType.Visible);
                 else
-                    NWNXVisibility.SetVisibilityOverride(player, target, VisibilityType.Hidden);
+                    VisibilityPlugin.SetVisibilityOverride(player, target, VisibilityType.Hidden);
             }
         }
 
@@ -140,9 +140,9 @@ namespace SWLOR.Game.Server.Service
             DataService.SubmitDataChange(visibility, action);
 
             if (visibility.IsVisible)
-                NWNXVisibility.SetVisibilityOverride(player, target, VisibilityType.Visible);
+                VisibilityPlugin.SetVisibilityOverride(player, target, VisibilityType.Visible);
             else
-                NWNXVisibility.SetVisibilityOverride(player, target, VisibilityType.Hidden);
+                VisibilityPlugin.SetVisibilityOverride(player, target, VisibilityType.Hidden);
         }
 
         public static void AdjustVisibility(NWPlayer player, string targetGUID, bool isVisible)

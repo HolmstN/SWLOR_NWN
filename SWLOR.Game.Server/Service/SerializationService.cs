@@ -10,14 +10,14 @@ namespace SWLOR.Game.Server.Service
     {
         public static string Serialize(NWObject @object)
         {
-            return NWNXObject.Serialize(@object.Object);
+            return ObjectPlugin.Serialize(@object.Object);
         }
         
         public static NWCreature DeserializeCreature(string base64String, Location location)
         {
             if (location == null) throw new ArgumentException("Invalid target location during creature deserialization.");
 
-            NWCreature creature = NWNXObject.Deserialize(base64String);
+            NWCreature creature = ObjectPlugin.Deserialize(base64String);
             creature.Location = location;
 
             return creature;
@@ -30,7 +30,7 @@ namespace SWLOR.Game.Server.Service
                 throw new ArgumentException("Invalid target placeable during item deserialization.");
             }
 
-            NWItem item = NWNXObject.Deserialize(base64String);
+            NWItem item = ObjectPlugin.Deserialize(base64String);
             var result = _.CopyItem(item.Object, target.Object, true);
             item.Destroy();
 
@@ -44,7 +44,7 @@ namespace SWLOR.Game.Server.Service
                 throw new ArgumentException("Invalid target location during item deserialization.");
             }
 
-            NWItem item = NWNXObject.Deserialize(base64String);
+            NWItem item = ObjectPlugin.Deserialize(base64String);
             item.Location = targetLocation;
             
             return item;
@@ -57,7 +57,7 @@ namespace SWLOR.Game.Server.Service
                 throw new ArgumentException("Invalid target creature during item deserialization.");
             }
 
-            NWItem item = NWNXObject.Deserialize(base64String);
+            NWItem item = ObjectPlugin.Deserialize(base64String);
             var result = _.CopyItem(item.Object, target.Object, true);
             item.Destroy();
 

@@ -42,7 +42,7 @@ namespace SWLOR.Game.Server.ChatCommand
                     _.BootPC(player, $"A DM has restarted the server. Please reconnect shortly.");
                 }
 
-                NWNXAdmin.ShutdownServer();
+                AdministrationPlugin.ShutdownServer();
             }
         }
 

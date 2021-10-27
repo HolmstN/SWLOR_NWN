@@ -190,7 +190,7 @@ namespace SWLOR.Game.Server.Service
 
         private static void OnModuleApplyDamage()
         {
-            var data = NWNXDamage.GetDamageEventData();
+            var data = DamagePlugin.GetDamageEventData();
             if (data.Base <= 0) return;
 
             NWObject damager = data.Damager;
@@ -216,7 +216,7 @@ namespace SWLOR.Game.Server.Service
             if (damageBonus <= 0) damageBonus = 0;
             
             data.Base += damageBonus;
-            NWNXDamage.SetDamageEventData(data);
+            DamagePlugin.SetDamageEventData(data);
         }
     }
 }

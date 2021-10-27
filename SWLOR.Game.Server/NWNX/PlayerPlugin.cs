@@ -5,7 +5,7 @@ using SWLOR.Game.Server.NWN.Enum;
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public class NWNXPlayer
+    public class PlayerPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Player";
 

@@ -36,7 +36,7 @@ namespace SWLOR.Game.Server.Service
 
         private static void OnModuleNWNXChat()
         {
-            ChatChannel channel = (ChatChannel)NWNXChat.GetChannel();
+            ChatChannel channel = (ChatChannel)ChatPlugin.GetChannel();
 
             // So we're going to play with a couple of channels here.
 
@@ -61,8 +61,8 @@ namespace SWLOR.Game.Server.Service
                 return;
             }
 
-            NWObject sender = NWNXChat.GetSender();
-            string message = NWNXChat.GetMessage().Trim();
+            NWObject sender = ChatPlugin.GetSender();
+            string message = ChatPlugin.GetMessage().Trim();
 
             if (string.IsNullOrWhiteSpace(message))
             {
@@ -84,12 +84,12 @@ namespace SWLOR.Game.Server.Service
             if (channel == ChatChannel.PlayerDM)
             {
                 // Simply echo the message back to the player.
-                NWNXChat.SendMessage((int)ChatChannel.ServerMessage, "(Sent to DM) " + message, sender, sender);
+                ChatPlugin.SendMessage((int)ChatChannel.ServerMessage, "(Sent to DM) " + message, sender, sender);
                 return;
             }
 
             // At this point, every channel left is one we want to manually handle.
-            NWNXChat.SkipMessage();
+            ChatPlugin.SkipMessage();
 
             // If this is a shout message, and the holonet is disabled, we disallow it.
             if (channel == ChatChannel.PlayerShout && sender.IsPC && 
@@ -322,7 +322,7 @@ namespace SWLOR.Game.Server.Service
                 // set back to original sender, if it was changed by holocom connection
                 sender = originalSender;
 
-                NWNXChat.SendMessage((int)finalChannel, finalMessageColoured, sender, obj);
+                ChatPlugin.SendMessage((int)finalChannel, finalMessageColoured, sender, obj);
             }
 
             MessageHub.Instance.Publish(new OnChatProcessed(sender, channel, isOOC));

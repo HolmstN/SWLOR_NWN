@@ -51,7 +51,7 @@ namespace SWLOR.Game.Server.Perk.MartialArts
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFinesse);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFinesse);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)
@@ -101,11 +101,11 @@ namespace SWLOR.Game.Server.Perk.MartialArts
 
             if (receivesFeat)
             {
-                NWNXCreature.AddFeat(creature, Feat.WeaponFinesse);
+                CreaturePlugin.AddFeat(creature, Feat.WeaponFinesse);
             }
             else
             {
-                NWNXCreature.RemoveFeat(creature, Feat.WeaponFinesse);
+                CreaturePlugin.RemoveFeat(creature, Feat.WeaponFinesse);
             }
         }
 

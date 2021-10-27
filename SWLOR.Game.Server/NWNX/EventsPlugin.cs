@@ -2,7 +2,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXEvents
+    public static class EventsPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Events";
 

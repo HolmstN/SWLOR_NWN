@@ -48,8 +48,8 @@ namespace SWLOR.Game.Server.Perk.OneHanded
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.PowerAttack);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedPowerAttack);
+            CreaturePlugin.RemoveFeat(creature, Feat.PowerAttack);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedPowerAttack);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)
@@ -76,8 +76,8 @@ namespace SWLOR.Game.Server.Perk.OneHanded
             
             if (Equals(equipped, oItem) || equipped.CustomItemType != CustomItemType.Vibroblade)
             {
-                NWNXCreature.RemoveFeat(creature, Feat.PowerAttack);
-                NWNXCreature.RemoveFeat(creature, Feat.ImprovedPowerAttack);
+                CreaturePlugin.RemoveFeat(creature, Feat.PowerAttack);
+                CreaturePlugin.RemoveFeat(creature, Feat.ImprovedPowerAttack);
                 if (_.GetActionMode(creature, ActionMode.PowerAttack) == true)
                 {
                     _.SetActionMode(creature, ActionMode.PowerAttack, false);
@@ -90,11 +90,11 @@ namespace SWLOR.Game.Server.Perk.OneHanded
             }
 
             int perkLevel = PerkService.GetCreaturePerkLevel(creature, PerkType.BladePowerAttack);
-            NWNXCreature.AddFeat(creature, Feat.PowerAttack);
+            CreaturePlugin.AddFeat(creature, Feat.PowerAttack);
 
             if (perkLevel >= 2)
             {
-                NWNXCreature.AddFeat(creature, Feat.ImprovedPowerAttack);
+                CreaturePlugin.AddFeat(creature, Feat.ImprovedPowerAttack);
             }
         }
 

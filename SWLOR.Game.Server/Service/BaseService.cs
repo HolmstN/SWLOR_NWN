@@ -67,12 +67,12 @@ namespace SWLOR.Game.Server.Service
         private static void OnModuleUseFeat()
         {
             NWPlayer player = (_.OBJECT_SELF);
-            int featID = Convert.ToInt32(NWNXEvents.GetEventData("FEAT_ID"));
+            int featID = Convert.ToInt32(EventsPlugin.GetEventData("FEAT_ID"));
 
-            var positionX = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_X"));
-            var positionY = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_Y"));
-            var positionZ = (float)Convert.ToDouble(NWNXEvents.GetEventData("TARGET_POSITION_Z"));
-            var area = (NWArea)_.StringToObject(NWNXEvents.GetEventData("AREA_OBJECT_ID"));
+            var positionX = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_X"));
+            var positionY = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_Y"));
+            var positionZ = (float)Convert.ToDouble(EventsPlugin.GetEventData("TARGET_POSITION_Z"));
+            var area = (NWArea)_.StringToObject(EventsPlugin.GetEventData("AREA_OBJECT_ID"));
             var vector = Vector3(positionX, positionY, positionZ);
 
             var targetLocation = Location(area, vector, 0.0f);
@@ -82,7 +82,7 @@ namespace SWLOR.Game.Server.Service
             var data = GetPlayerTempData(player);
             data.TargetArea = area;
             data.TargetLocation = targetLocation;
-            data.TargetObject = _.StringToObject(NWNXEvents.GetEventData("TARGET_OBJECT_ID"));
+            data.TargetObject = _.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID"));
 
             player.ClearAllActions();
             DialogService.StartConversation(player, player, "BaseManagementTool");
@@ -1270,14 +1270,14 @@ namespace SWLOR.Game.Server.Service
         private static void OnModuleNWNXChat()
         {
             NWPlayer sender = _.OBJECT_SELF;
-            string text = NWNXChat.GetMessage().Trim();
+            string text = ChatPlugin.GetMessage().Trim();
 
             if (!CanHandleChat(sender))
             {
                 return;
             }
 
-            NWNXChat.SkipMessage();
+            ChatPlugin.SkipMessage();
 
             if (text.Length > 32)
             {

@@ -46,7 +46,7 @@ namespace SWLOR.Game.Server.Perk.Throwing
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.ZenArchery);
+            CreaturePlugin.RemoveFeat(creature, Feat.ZenArchery);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)
@@ -74,11 +74,11 @@ namespace SWLOR.Game.Server.Perk.Throwing
             if (Equals(equipped, oItem) ||
                 equipped.CustomItemType != CustomItemType.Throwing)
             {
-                NWNXCreature.RemoveFeat(creature, Feat.ZenArchery);
+                CreaturePlugin.RemoveFeat(creature, Feat.ZenArchery);
                 return;
             }
 
-            NWNXCreature.AddFeat(creature, Feat.ZenArchery);
+            CreaturePlugin.AddFeat(creature, Feat.ZenArchery);
         }
 
         public bool IsHostile()

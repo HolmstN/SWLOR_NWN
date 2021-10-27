@@ -154,39 +154,39 @@ namespace SWLOR.Game.Server.Service
             if (chaBonus > 55) chaBonus = 55;
 
             // Apply attributes
-            NWNXCreature.SetRawAbilityScore(player, AbilityType.Strength, (int)strBonus + pcEntity.STRBase);
-            NWNXCreature.SetRawAbilityScore(player, AbilityType.Dexterity, (int)dexBonus + pcEntity.DEXBase);
-            NWNXCreature.SetRawAbilityScore(player, AbilityType.Constitution, (int)conBonus + pcEntity.CONBase);
-            NWNXCreature.SetRawAbilityScore(player, AbilityType.Intelligence, (int)intBonus + pcEntity.INTBase);
-            NWNXCreature.SetRawAbilityScore(player, AbilityType.Wisdom, (int)wisBonus + pcEntity.WISBase);
-            NWNXCreature.SetRawAbilityScore(player, AbilityType.Charisma, (int)chaBonus + pcEntity.CHABase);
+            CreaturePlugin.SetRawAbilityScore(player, AbilityType.Strength, (int)strBonus + pcEntity.STRBase);
+            CreaturePlugin.SetRawAbilityScore(player, AbilityType.Dexterity, (int)dexBonus + pcEntity.DEXBase);
+            CreaturePlugin.SetRawAbilityScore(player, AbilityType.Constitution, (int)conBonus + pcEntity.CONBase);
+            CreaturePlugin.SetRawAbilityScore(player, AbilityType.Intelligence, (int)intBonus + pcEntity.INTBase);
+            CreaturePlugin.SetRawAbilityScore(player, AbilityType.Wisdom, (int)wisBonus + pcEntity.WISBase);
+            CreaturePlugin.SetRawAbilityScore(player, AbilityType.Charisma, (int)chaBonus + pcEntity.CHABase);
 
             // Apply AC
             int ac = EffectiveArmorClass(player, ignoreItem, itemBonuses);
-            NWNXCreature.SetBaseAC(player, ac);
+            CreaturePlugin.SetBaseAC(player, ac);
 
             // Apply BAB
             int bab = CalculateBAB(player, ignoreItem, itemBonuses);
-            NWNXCreature.SetBaseAttackBonus(player, bab);
+            CreaturePlugin.SetBaseAttackBonus(player, bab);
 
             // Apply HP
             int hp = EffectiveMaxHitPoints(player, itemBonuses);
             for (int level = 1; level <= 5; level++)
             {
                 hp--;
-                NWNXCreature.SetMaxHitPointsByLevel(player, level, 1);
+                CreaturePlugin.SetMaxHitPointsByLevel(player, level, 1);
             }
 
             for (int level = 1; level <= 5; level++)
             {
                 if (hp > 255) // Levels can only contain a max of 255 HP
                 {
-                    NWNXCreature.SetMaxHitPointsByLevel(player, level, 255);
+                    CreaturePlugin.SetMaxHitPointsByLevel(player, level, 255);
                     hp = hp - 254;
                 }
                 else // Remaining value gets set to the level. (<255 hp)
                 {
-                    NWNXCreature.SetMaxHitPointsByLevel(player, level, hp + 1);
+                    CreaturePlugin.SetMaxHitPointsByLevel(player, level, hp + 1);
                     break;
                 }
             }
@@ -211,7 +211,7 @@ namespace SWLOR.Game.Server.Service
             // Attempt a refresh of the character sheet UI in a second.
             _.DelayCommand(1.0f, () =>
             {
-                NWNXPlayer.UpdateCharacterSheet(player);
+                PlayerPlugin.UpdateCharacterSheet(player);
             });
         }
 

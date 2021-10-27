@@ -975,18 +975,18 @@ namespace SWLOR.Game.Server.Service
             if (!speaker.IsPlayer) return;
 
             // Ignore Tells, DM messages etc..
-            if (NWNXChat.GetChannel() != ChatChannel.PlayerTalk &&
-                NWNXChat.GetChannel() != ChatChannel.PlayerWhisper &&
-                NWNXChat.GetChannel() != ChatChannel.PlayerParty)
+            if (ChatPlugin.GetChannel() != ChatChannel.PlayerTalk &&
+                ChatPlugin.GetChannel() != ChatChannel.PlayerWhisper &&
+                ChatPlugin.GetChannel() != ChatChannel.PlayerParty)
             {
                 return;
             }
 
-            string message = NWNXChat.GetMessage().Trim();
+            string message = ChatPlugin.GetMessage().Trim();
 
             if (speaker.GetLocalInt("IS_SHIP") == 1 || speaker.GetLocalInt("IS_GUNNER") == 1)
             {
-                NWNXChat.SkipMessage();
+                ChatPlugin.SkipMessage();
 
                 // Are we doing a special command?
                 if (message == "/exit")

@@ -73,16 +73,16 @@ namespace SWLOR.Game.Server.Service
             if (dbPlayer.VersionNumber < 3)
             {
                 // These IDs come from the Feat.2da file.
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceBreach); // Force Breach
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceLightning); // Force Lightning
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceHeal1); // Force Heal
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedDarkHeal); // Dark Heal
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceSpread); // Force Spread
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedDarkSpread); // Dark Spread
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForcePush); // Force Push
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceAura); // Force Aura
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedDrainLife); // Drain Life
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedChainspell); // Chainspell
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceBreach); // Force Breach
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceLightning); // Force Lightning
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceHeal1); // Force Heal
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedDarkHeal); // Dark Heal
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceSpread); // Force Spread
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedDarkSpread); // Dark Spread
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForcePush); // Force Push
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceAura); // Force Aura
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedDrainLife); // Drain Life
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedChainspell); // Chainspell
 
                 dbPlayer.VersionNumber = 3;
             }
@@ -90,25 +90,25 @@ namespace SWLOR.Game.Server.Service
             // VERSION 4: Give the Uncanny Dodge 1 feat to all characters.
             if (dbPlayer.VersionNumber < 4)
             {
-                NWNXCreature.AddFeatByLevel(player, Feat.UncannyDodge1, 1);
+                CreaturePlugin.AddFeatByLevel(player, Feat.UncannyDodge1, 1);
                 dbPlayer.VersionNumber = 4;
             }
 
             // VERSION 5: We're doing another Force rework, so remove any force feats the player may have acquired.
             if (dbPlayer.VersionNumber < 5)
             {
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceBreach); // Force Breach
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceLightning); // Force Lightning
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceHeal1); // Force Heal I
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedAbsorptionField); // Absorption Field
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceSpread); // Force Spread
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForcePush); // Force Push
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceAura); // Force Aura
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedDrainLife); // Drain Life
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedChainspell); // Chainspell
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceHeal2); // Force Heal II
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceHeal3); // Force Heal III
-                NWNXCreature.RemoveFeat(player, Feat.DeprecatedForceHeal4); // Force Heal IV
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceBreach); // Force Breach
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceLightning); // Force Lightning
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceHeal1); // Force Heal I
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedAbsorptionField); // Absorption Field
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceSpread); // Force Spread
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForcePush); // Force Push
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceAura); // Force Aura
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedDrainLife); // Drain Life
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedChainspell); // Chainspell
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceHeal2); // Force Heal II
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceHeal3); // Force Heal III
+                CreaturePlugin.RemoveFeat(player, Feat.DeprecatedForceHeal4); // Force Heal IV
 
                 dbPlayer.VersionNumber = 5;
             }
@@ -140,13 +140,13 @@ namespace SWLOR.Game.Server.Service
                 // Point Blank Shot
                 if(PerkService.GetPCPerkByID(player.GlobalID, (int)PerkType.PointBlankShot) != null)
                 {
-                    NWNXCreature.AddFeat(player, Feat.PointBlankShot);
+                    CreaturePlugin.AddFeat(player, Feat.PointBlankShot);
                 }
 
                 // Rapid Reload
                 if (PerkService.GetPCPerkByID(player.GlobalID, (int) PerkType.RapidReload) != null)
                 {
-                    NWNXCreature.AddFeat(player, Feat.RapidReload);
+                    CreaturePlugin.AddFeat(player, Feat.RapidReload);
                 }
 
                 dbPlayer.VersionNumber = 8;
@@ -229,10 +229,10 @@ namespace SWLOR.Game.Server.Service
                     if (amount > 0)
                     {
                         // Unpack the IP we're working with. Adjust its type and value, then reapply it.
-                        var unpacked = NWNXItemProperty.UnpackIP(ip);
+                        var unpacked = ItemPropertyPlugin.UnpackIP(ip);
                         unpacked.SubType = (int)ComponentBonusType.DurabilityUp;
                         unpacked.CostTableValue = amount;
-                        var packed = NWNXItemProperty.PackIP(unpacked);
+                        var packed = ItemPropertyPlugin.PackIP(unpacked);
                         BiowareXP2.IPSafeAddItemProperty(item, packed, 0.0f, AddItemPropertyPolicy.IgnoreExisting, true, true);
                     }
 

@@ -41,12 +41,12 @@ namespace SWLOR.Game.Server.Perk.Blaster
 
         public void OnPurchased(NWCreature creature, int newLevel)
         {
-            NWNXCreature.AddFeat(creature, Feat.RapidReload);
+            CreaturePlugin.AddFeat(creature, Feat.RapidReload);
         }
 
         public void OnRemoved(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.RapidReload);
+            CreaturePlugin.RemoveFeat(creature, Feat.RapidReload);
         }
 
         public void OnItemEquipped(NWCreature creature, NWItem oItem)

@@ -56,10 +56,10 @@ namespace SWLOR.Game.Server.Scripts.Placeable.Scrapper
             }
             
             // Remove local variables (except the global ID)
-            int varCount = NWNXObject.GetLocalVariableCount(item);
+            int varCount = ObjectPlugin.GetLocalVariableCount(item);
             for (int index = varCount-1; index >= 0; index--)
             {
-                var localVar = NWNXObject.GetLocalVariable(item, index);
+                var localVar = ObjectPlugin.GetLocalVariable(item, index);
 
                 if (localVar.Key != "GLOBAL_ID")
                 {

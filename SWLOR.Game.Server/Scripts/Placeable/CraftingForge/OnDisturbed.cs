@@ -121,7 +121,7 @@ namespace SWLOR.Game.Server.Scripts.Placeable.CraftingForge
             float baseCraftDelay = 18.0f - (18.0f * PerkService.GetCreaturePerkLevel(pc, PerkType.SpeedyRefining) * 0.1f);
 
             pc.IsBusy = true;
-            NWNXPlayer.StartGuiTimingBar(pc, baseCraftDelay, string.Empty);
+            PlayerPlugin.StartGuiTimingBar(pc, baseCraftDelay, string.Empty);
 
             // Any component bonuses on the ore get applied to the end product.
             var itemProperties = item.ItemProperties.Where(x =>

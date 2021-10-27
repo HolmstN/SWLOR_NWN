@@ -3,7 +3,7 @@ using SWLOR.Game.Server.NWN;
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXAdmin
+    public static class AdministrationPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Administration";
 

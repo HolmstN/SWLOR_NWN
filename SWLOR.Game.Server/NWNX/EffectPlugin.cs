@@ -2,7 +2,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXEffect
+    public static class EffectPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Effect";
 

@@ -87,7 +87,7 @@ namespace SWLOR.Game.Server.Perk.Weapons
             {
                 if (PerkService.GetCreaturePerkLevel(creature, PerkType.ImprovedCriticalMartialArts) > 0)
                 {
-                    NWNXCreature.AddFeat(creature, Feat.ImprovedCritical_UnarmedStrike);
+                    CreaturePlugin.AddFeat(creature, Feat.ImprovedCritical_UnarmedStrike);
                 }
                 return;
             }
@@ -128,48 +128,48 @@ namespace SWLOR.Game.Server.Perk.Weapons
 
         private void RemoveAllFeats(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_BastardSword);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_BattleAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Club);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Dagger);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Dart);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_DireMace);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_DoubleAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Dwaxe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_GreatAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_GreatSword);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Halberd);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_HandAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_HeavyCrossbow);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_HeavyFlail);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Kama);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Katana);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Kukri);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_LightCrossbow);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_LightFlail);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_LightHammer);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_LightMace);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Longbow);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_LongSword);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_MorningStar);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Rapier);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Scimitar);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Scythe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Shortbow);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_ShortSword);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Shuriken);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Sickle);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Sling);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Spear);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Staff);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_ThrowingAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Trident);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_TwoBladedSword);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_UnarmedStrike);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_WarHammer);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_Whip);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_LongSword);
-            NWNXCreature.RemoveFeat(creature, Feat.ImprovedCritical_TwoBladedSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_BastardSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_BattleAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Club);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Dagger);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Dart);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_DireMace);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_DoubleAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Dwaxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_GreatAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_GreatSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Halberd);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_HandAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_HeavyCrossbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_HeavyFlail);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Kama);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Katana);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Kukri);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_LightCrossbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_LightFlail);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_LightHammer);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_LightMace);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Longbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_LongSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_MorningStar);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Rapier);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Scimitar);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Scythe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Shortbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_ShortSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Shuriken);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Sickle);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Sling);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Spear);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Staff);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_ThrowingAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Trident);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_TwoBladedSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_UnarmedStrike);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_WarHammer);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_Whip);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_LongSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.ImprovedCritical_TwoBladedSword);
         }
 
         private void AddCriticalFeat(NWCreature creature, BaseItem type)
@@ -225,7 +225,7 @@ namespace SWLOR.Game.Server.Perk.Weapons
                 default: return;
             }
 
-            NWNXCreature.AddFeat(creature, (Feat)feat);
+            CreaturePlugin.AddFeat(creature, (Feat)feat);
         }
 
         public bool IsHostile()

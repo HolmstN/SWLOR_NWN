@@ -88,11 +88,11 @@ namespace SWLOR.Game.Server.Perk.Weapons
                 int martialArtsLevel = PerkService.GetCreaturePerkLevel(creature, PerkType.WeaponFocusMartialArts);
                 if (martialArtsLevel >= 1)
                 {
-                    NWNXCreature.AddFeat(creature, Feat.WeaponFocus_UnarmedStrike);
+                    CreaturePlugin.AddFeat(creature, Feat.WeaponFocus_UnarmedStrike);
                 }
                 if (martialArtsLevel >= 2)
                 {
-                    NWNXCreature.AddFeat(creature, Feat.WeaponSpecialization_UnarmedStrike);
+                    CreaturePlugin.AddFeat(creature, Feat.WeaponSpecialization_UnarmedStrike);
                 }
 
                 return;
@@ -138,87 +138,87 @@ namespace SWLOR.Game.Server.Perk.Weapons
 
         private void RemoveAllFeats(NWCreature creature)
         {
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_BattleAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Club);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Dagger);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Dart);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_DireMace);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_DoubleAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Dwaxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_GreatAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_GreatSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Halberd);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_HandAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_HeavyCrossbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_HeavyFlail);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Kama);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Katana);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Kukri);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_LightCrossbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_LightFlail);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_LightHammer);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_LightMace);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Longbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_LongSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_MorningStar);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Rapier);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Scimitar);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Scythe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Shortbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_ShortSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Shuriken);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Sickle);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Sling);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Spear);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Staff);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_ThrowingAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Trident);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_TwoBladedSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_UnarmedStrike);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_WarHammer);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponFocus_Whip);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_BattleAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Club);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Dagger);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Dart);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_DireMace);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_DoubleAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Dwaxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_GreatAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_GreatSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Halberd);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_HandAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_HeavyCrossbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_HeavyFlail);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Kama);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Katana);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Kukri);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_LightCrossbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_LightFlail);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_LightHammer);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_LightMace);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Longbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_LongSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_MorningStar);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Rapier);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Scimitar);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Scythe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Shortbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_ShortSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Shuriken);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Sickle);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Sling);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Spear);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Staff);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_ThrowingAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Trident);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_TwoBladedSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_UnarmedStrike);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_WarHammer);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponFocus_Whip);
 
 
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_BastardSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_BattleAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Club);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Dagger);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Dart);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_DireMace);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_DoubleAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Dwaxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_GreatAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_GreatSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Halberd);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_HandAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_HeavyCrossbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_HeavyFlail);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Kama);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Katana);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Kukri);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_LightCrossbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_LightFlail);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_LightHammer);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_LightMace);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Longbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_LongSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_MorningStar);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Rapier);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Scimitar);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Scythe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Shortbow);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_ShortSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Shuriken);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Sickle);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Sling);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Spear);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Staff);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_ThrowingAxe);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Trident);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_TwoBladedSword);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_UnarmedStrike);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_WarHammer);
-            NWNXCreature.RemoveFeat(creature, Feat.WeaponSpecialization_Whip);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_BastardSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_BattleAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Club);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Dagger);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Dart);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_DireMace);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_DoubleAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Dwaxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_GreatAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_GreatSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Halberd);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_HandAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_HeavyCrossbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_HeavyFlail);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Kama);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Katana);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Kukri);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_LightCrossbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_LightFlail);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_LightHammer);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_LightMace);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Longbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_LongSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_MorningStar);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Rapier);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Scimitar);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Scythe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Shortbow);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_ShortSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Shuriken);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Sickle);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Sling);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Spear);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Staff);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_ThrowingAxe);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Trident);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_TwoBladedSword);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_UnarmedStrike);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_WarHammer);
+            CreaturePlugin.RemoveFeat(creature, Feat.WeaponSpecialization_Whip);
 
         }
 
@@ -273,7 +273,7 @@ namespace SWLOR.Game.Server.Perk.Weapons
                 default: return;
             }
 
-            NWNXCreature.AddFeat(creature, (Feat)feat);
+            CreaturePlugin.AddFeat(creature, (Feat)feat);
         }
 
 
@@ -328,7 +328,7 @@ namespace SWLOR.Game.Server.Perk.Weapons
                 default: return;
             }
 
-            NWNXCreature.AddFeat(creature, (Feat)feat);
+            CreaturePlugin.AddFeat(creature, (Feat)feat);
         }
 
         public bool IsHostile()

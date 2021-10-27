@@ -279,7 +279,7 @@ namespace SWLOR.Game.Server.Conversation
 
             foreach (var feat in feats)
             {
-                NWNXCreature.RemoveFeat(GetPC(), (Feat)feat.FeatID);
+                CreaturePlugin.RemoveFeat(GetPC(), (Feat)feat.FeatID);
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXProfiler
+    public static class ProfilerPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Profiler";
 

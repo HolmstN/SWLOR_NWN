@@ -226,8 +226,8 @@ namespace SWLOR.Game.Server.Service
             // Activator is the creature who used the feat.
             // Target is who the activator selected to use this feat on.
             NWCreature activator = _.OBJECT_SELF;
-            NWCreature target = _.StringToObject(NWNXEvents.GetEventData("TARGET_OBJECT_ID"));
-            var featID = (Feat)Convert.ToInt32(NWNXEvents.GetEventData("FEAT_ID"));
+            NWCreature target = _.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID"));
+            var featID = (Feat)Convert.ToInt32(EventsPlugin.GetEventData("FEAT_ID"));
 
             // Ensure this perk feat can be activated.
             if (!CanUsePerkFeat(activator, target, featID)) return;
@@ -593,7 +593,7 @@ namespace SWLOR.Game.Server.Service
             // If there's a casting delay, display a timing bar on-screen.
             if (activationTime > 0)
             {
-                NWNXPlayer.StartGuiTimingBar(activator, (int)activationTime, string.Empty);
+                PlayerPlugin.StartGuiTimingBar(activator, (int)activationTime, string.Empty);
             }
 
             // Run the FinishAbilityUse event at the end of the activation time.
@@ -656,7 +656,7 @@ namespace SWLOR.Game.Server.Service
                     _.RemoveEffect(activator, effect);
                 }
 
-                NWNXPlayer.StopGuiTimingBar(activator, "", -1);
+                PlayerPlugin.StopGuiTimingBar(activator, "", -1);
                 activator.IsBusy = false;
                 activator.SetLocalInt(spellUUID, (int)SpellStatusType.Interrupted);
                 activator.SendMessage("Your ability has been interrupted.");
@@ -967,10 +967,10 @@ namespace SWLOR.Game.Server.Service
             var featIDs = new List<int>();
 
             // Add all feats the creature has to the list.
-            int featCount = NWNXCreature.GetFeatCount(self);
+            int featCount = CreaturePlugin.GetFeatCount(self);
             for (int x = 0; x <= featCount - 1; x++)
             {
-                var featID = NWNXCreature.GetFeatByIndex(self, x);
+                var featID = CreaturePlugin.GetFeatByIndex(self, x);
                 featIDs.Add((int)featID);
             }
 

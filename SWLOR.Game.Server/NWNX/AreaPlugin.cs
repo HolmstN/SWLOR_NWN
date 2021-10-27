@@ -2,7 +2,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXArea
+    public static class AreaPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Area";
 

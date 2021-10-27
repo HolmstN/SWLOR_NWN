@@ -218,7 +218,7 @@ namespace SWLOR.Game.Server.Service
             immobilize = _.TagEffect(immobilize, "CRAFTING_IMMOBILIZATION");
             _.ApplyEffectToObject(DurationType.Permanent, immobilize, oPC.Object);
 
-            NWNXPlayer.StartGuiTimingBar(oPC, modifiedCraftDelay, "");
+            PlayerPlugin.StartGuiTimingBar(oPC, modifiedCraftDelay, "");
 
             var @event = new OnCreateCraftedItem(oPC);
             oPC.DelayEvent(modifiedCraftDelay, @event);
@@ -539,15 +539,15 @@ namespace SWLOR.Game.Server.Service
 
         private static void OnModuleNWNXChat()
         {
-            NWPlayer pc = NWNXChat.GetSender();
-            string newName = NWNXChat.GetMessage();
+            NWPlayer pc = ChatPlugin.GetSender();
+            string newName = ChatPlugin.GetMessage();
 
             if (!CanHandleChat(pc))
             {
                 return;
             }
 
-            NWNXChat.SkipMessage();
+            ChatPlugin.SkipMessage();
             NWItem renameItem = pc.GetLocalObject("CRAFT_RENAMING_ITEM_OBJECT");
 
             pc.DeleteLocalInt("CRAFT_RENAMING_ITEM");
@@ -573,13 +573,13 @@ namespace SWLOR.Game.Server.Service
         private static void OnModuleUseFeat()
         {
             NWPlayer pc = _.OBJECT_SELF;
-            int featID = Convert.ToInt32(NWNXEvents.GetEventData("FEAT_ID"));
+            int featID = Convert.ToInt32(EventsPlugin.GetEventData("FEAT_ID"));
 
             if (featID != (int)Feat.RenameCraftedItem) return;
             pc.ClearAllActions();
 
             bool isSetting = GetLocalBool(pc, "CRAFT_RENAMING_ITEM") == true;
-            NWItem renameItem = _.StringToObject(NWNXEvents.GetEventData("TARGET_OBJECT_ID"));
+            NWItem renameItem = _.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID"));
 
             if (isSetting)
             {

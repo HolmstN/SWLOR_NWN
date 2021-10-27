@@ -2,7 +2,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXDamage
+    public static class DamagePlugin
     {
         private const string PLUGIN_NAME = "NWNX_Damage";
 

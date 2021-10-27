@@ -33,9 +33,9 @@ namespace SWLOR.Game.Server.Scripts.Placeable.Quests.AbandonedStation
             NWArea restrictedLevel = exit.Area.GetLocalObject("RESTRICTED_LEVEL");
             NWArea directorsChambers = exit.Area.GetLocalObject("DIRECTORS_CHAMBERS");
 
-            int playersInAreas = NWNXArea.GetNumberOfPlayersInArea(mainLevel) +
-                                 NWNXArea.GetNumberOfPlayersInArea(restrictedLevel) +
-                                 NWNXArea.GetNumberOfPlayersInArea(directorsChambers);
+            int playersInAreas = AreaPlugin.GetNumberOfPlayersInArea(mainLevel) +
+                                 AreaPlugin.GetNumberOfPlayersInArea(restrictedLevel) +
+                                 AreaPlugin.GetNumberOfPlayersInArea(directorsChambers);
 
             // There are still players in the areas. We can't clean up yet.
             if (playersInAreas > 0) return;

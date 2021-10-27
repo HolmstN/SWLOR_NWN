@@ -2,7 +2,7 @@
 
 namespace SWLOR.Game.Server.NWNX
 {
-    public static class NWNXFeedback
+    public static class FeedbackPlugin
     {
         private const string PLUGIN_NAME = "NWNX_Feedback";
 
